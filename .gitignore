@@ -1,0 +1,8 @@
+# Ignore Python cache and virtual environment
+venv/
+_pycache_/
+
+# Ignore checkpoints and temporary files
+*.log
+.DS_Store
+*.ipynb_checkpoints/
