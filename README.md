@@ -1,100 +1,91 @@
-Emotion Recognition from Speech and Song Audio
-Project Overview
-This project implements an end-to-end pipeline for emotion classification using speech and song audio data. The system processes audio files, extracts Mel-Frequency Cepstral Coefficients (MFCCs) as features, and uses a deep learning model to classify emotions into one of eight categories: angry, calm, disgust, fearful, happy, neutral, sad, or surprised.
 
-Key Features
-Processes both speech and song audio data
-Extracts 40 MFCC features from audio files
-Uses a 1D Convolutional Neural Network (CNN) for classification
-Achieves weighted F1 score of 85% and overall accuracy of 85%
-Includes class balancing through weighted loss function
-Provides detailed evaluation metrics including confusion matrix and per-class accuracy
 
-Dataset
-The project uses the RAVDESS (Ryerson Audio-Visual Database of Emotional Speech and Song) dataset, which contains:
-24 professional actors (12 male, 12 female)
-8 emotional states (neutral, calm, happy, sad, angry, fearful, disgust, surprised)
-Two modalities: speech and song
-Audio files in WAV format at 48kHz sampling rate
 
-Project Structure
-EMOTION_RECOGNIZER/
-├── venv/                     # Virtual environment
-├── .gitignore               # Git ignore file
-├── app.py                    # Streamlit web application
-├── emotion_classifier_model.h5  # Trained model weights
-├── finalproject.ipynb        # Jupyter notebook with full implementation
-├── label_encoder.pkl         # Label encoder for emotion classes
-├── requirements.txt          # Python dependencies
-└── test_model.py             # Script for testing the model
-Installation
-Clone the repository
+# Emotion Recognition from Speech and Song Audio 🎤
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+
+A deep learning pipeline that classifies emotions from speech and song audio using MFCC features and a 1D CNN model, achieving **85% accuracy** across 8 emotion classes.
+
+## ✨ Features
+- 🎙️ Processes both speech and song audio (WAV format)
+- 🔢 Extracts 40 MFCC features per audio sample
+- 🧠 1D CNN architecture with Batch Normalization
+- ⚖️ Handles class imbalance with weighted loss
+- 📈 Early Stopping and LR Reduction callbacks
+- 🌍 Streamlit web interface for easy testing
+- 📊 Comprehensive evaluation metrics
+
+## 🛠️ Installation
+1. Clone the repository:
+```bash
 git clone https://github.com/yourusername/emotion-recognition.git
 cd emotion-recognition
-Create and activate a virtual environment
+```
+
+2. Set up virtual environment:
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install dependencies
+source venv/bin/activate  # Linux/MacOS
+# venv\Scripts\activate  # Windows
+```
+
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
-Usage
-Running the Web Application
-To launch the Streamlit web app:
+```
+
+## 🚀 Usage
+### Web Interface
+```bash
 streamlit run app.py
-The web application allows you to:
+```
+Access the interface at `http://localhost:8501`
 
-Upload audio files (WAV format)
+### Command Line
+```bash
+python test_model.py --file path/to/audio.wav
+```
 
-View the waveform and spectrogram
+## 📂 Project Structure
+```
+Emotion_Recognizer/
+├── app.py                    # Streamlit web application
+├── emotion_classifier_model.h5  # Trained Keras model
+├── finalproject.ipynb        # Complete Jupyter notebook
+├── label_encoder.pkl         # Emotion label encoder
+├── requirements.txt          # Python dependencies
+└── test_model.py             # CLI testing script
+```
 
-Get emotion predictions in real-time
-Testing the Model
-To test the model with your own audio files
-python test_model.py --file path/to/your/audio.wav
+## 📊 Performance
+### Overall Metrics
+| Metric            | Score |
+|-------------------|-------|
+| Accuracy          | 85%   |
+| Weighted F1 Score | 85%   |
+| Loss              | 0.42  |
 
-Methodology
-Data Preprocessing
-Audio Loading: Audio files are loaded and resampled to 22.05kHz
-Padding/Truncation: All audio clips are standardized to 3 seconds duration
-Feature Extraction: 40 MFCCs are extracted from each audio file
-Normalization: MFCCs are normalized across the dataset
+### Class-wise Accuracy
+| Emotion    | Accuracy | Samples |
+|------------|----------|---------|
+| Angry      | 96%      | 75      |
+| Calm       | 91%      | 75      |
+| Disgust    | 79%      | 39      |
+| Fearful    | 81%      | 75      |
+| Happy      | 79%      | 75      |
+| Neutral    | 87%      | 38      |
+| Sad        | 80%      | 75      |
+| Surprised  | 82%      | 39      |
 
-Model Architecture
-The model uses a 1D CNN architecture with the following layers:
-Three 1D convolutional layers with increasing filters (128, 256, 512)
-Batch normalization and max pooling after each convolutional layer
-Dropout layers for regularization (30% dropout)
-A dense layer with 512 units and 60% dropout
-Softmax output layer with 8 units (one per emotion class)
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Training
-Optimizer: Adam with learning rate 0.0005
-Loss: Categorical cross-entropy with class weights
-Callbacks: Early stopping and learning rate reduction on plateau
-Batch size: 32
-Epochs: 100 (with early stopping)
+---
 
-Performance Metrics
-The model achieves the following performance on the validation set:
-
-Metric	Score
-Overall Accuracy	85%
-Weighted F1 Score	85%
-Per-Class Accuracy
-Emotion	Accuracy
-angry	96%
-calm	91%
-disgust	79%
-fearful	81%
-happy	79%
-neutral	87%
-sad	80%
-surprised	82%
-Evaluation Criteria Check
-F1 score > 80%: Achieved (85%)
-Each class accuracy > 75%: All classes meet this requirement
-Overall accuracy > 80%: Achieved (85%)
-
-Acknowledgments
-Ryerson University for the RAVDESS dataset
-The open-source community for libraries like Librosa, TensorFlow, and scikit-learn
-
+<div align="center">
+  Made with ❤️ using <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="20"> Python, <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="20"> TensorFlow, and Streamlit
+</div>
+```
