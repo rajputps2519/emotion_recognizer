@@ -1,4 +1,6 @@
-  
+#  Live WEb App
+[![Open in Streamlit](https://img.shields.io/badge/Live%20App-Streamlit-brightgreen?logo=streamlit)](https://emotionrecognizer.streamlit.app)
+
   
 
 
