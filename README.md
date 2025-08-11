@@ -83,8 +83,6 @@ Emotion_Recognizer/
 | Sad        | 80%      | 75      |
 | Surprised  | 82%      | 39      |
 
-## 📜 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
